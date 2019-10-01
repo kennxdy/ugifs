@@ -14,13 +14,15 @@
     }
     h1 {
         font-size: 40px;
-        font-weight: 300;
         color: #fff;
         font-family: sans-serif;
         padding: 20px;
     }
     form {
         padding-bottom: 40px;
+    }
+    input[name="quantity"] {
+        height: 1px;
     }
     img {
         width: 250px;
@@ -30,7 +32,7 @@
 <body>
     <h1>UGifs</h1>
     <form id="search_form" method="get" action="/" >
-      <input type="number" name="quantity" size="1" placeholder="Quantity" required="" >
+      <input type="number" name="quantity" placeholder="Quantity" required="" / >
       <input type="text" name="input" placeholder="Search term" required="" />
       <input type="submit" value="Search" />
     </form>
