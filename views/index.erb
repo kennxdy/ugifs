@@ -36,8 +36,12 @@
       <input type="text" name="input" placeholder="Search term" required="" />
       <input type="submit" value="Search" />
     </form>
-    <% for i in 0..@limit - 1 %>
-        <img src="<%= @content[i] %>" alt=" " >
+    <% if @api_key.length == 32 %>
+        <% for i in 0..@limit - 1 %>
+            <img src="<%= @gifs[i] %>" alt="gif" >
+        <% end %>
+    <% else %>
+        <h3 style="color:red;"><%= @msg %></h3>
     <% end %>
 </body>
 </html>
