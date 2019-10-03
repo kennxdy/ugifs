@@ -8,7 +8,7 @@ Application to find gifs using the Giphy API.
 
 ## Dependencies
 
-This app was built with Sinatra framework.
+[Sinatra](http://sinatrarb.com/) Framework was used to build this app.
 
 Run this command to install the required gems:
 
