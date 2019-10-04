@@ -1,6 +1,6 @@
 # UGifs
 
-Application to find gifs using the Giphy API.
+Application to find gifs using the [Giphy API](https://developers.giphy.com/).
 
 ## Screenshot
 
@@ -18,7 +18,7 @@ $ bundle install
 
 ## Configuration
 
-Open the `config.json` file and enter your Giphy API key:
+Open the `config.json` file and enter your Giphy API Key:
 
 ```json
 {
