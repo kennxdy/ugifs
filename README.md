@@ -4,7 +4,7 @@ Application to find gifs using the [Giphy API](https://developers.giphy.com/).
 
 ## Screenshot
 
-<img src="image/ugifs.png" alt="ugifs">
+<img src="screenshot/ugifs.png" alt="ugifs">
 
 ## Dependencies
 
