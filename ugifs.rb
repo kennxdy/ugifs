@@ -3,8 +3,9 @@ require 'net/http'
 require 'sinatra'
 
 
+# Get API KEY from config.json file
 def get_key
-  file = File.read('config.json')
+  file = File.read("config.json")
 
   config = JSON.parse(file)
 
@@ -13,6 +14,7 @@ def get_key
   return key
 end
 
+# Checks the minimum amount of search term results
 def limit_validator(limit)
   if limit <= 0
     limit = 1
@@ -21,16 +23,9 @@ def limit_validator(limit)
   return limit
 end
 
-
-get '/' do
-  @api_key = get_key
-  @search_term = params[:input]
-  @limit = params[:quantity].to_i
-  @limit = limit_validator(@limit)
-  @content = []
-
-  if @search_term
-    url = URI.parse("http://api.giphy.com/v1/gifs/search?q=#{@search_term}&api_key=#{@api_key}&limit=#{@limit}")
+def get_gifs(search_term, api_key, limit, gifs)
+  if search_term
+    url = URI.parse("http://api.giphy.com/v1/gifs/search?q=#{search_term}&api_key=#{api_key}&limit=#{limit}")
 
     response = Net::HTTP.get_response(url)
 
@@ -38,9 +33,26 @@ get '/' do
 
     result = JSON.parse(buffer)
 
-    for i in 0..@limit - 1
-      @content.push(result["data"][i]["images"]["original"]["url"])
+    if result["data"].empty?
+    else
+      for i in 0..limit - 1
+        gifs.push(result["data"][i]["images"]["original"]["url"])
+      end
     end
+  end
+end
+
+get "/" do
+  @api_key = get_key
+  @search_term = params[:input]
+  @limit = params[:quantity].to_i
+  @limit = limit_validator(@limit)
+  @gifs = []
+
+  if @api_key.length == 32
+    get_gifs(@search_term, @api_key, @limit, @gifs)
+  else
+    @msg = "Invalid API!"
   end
 
   erb :index
